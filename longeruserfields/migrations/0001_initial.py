@@ -11,8 +11,8 @@ from ..conf import ApplicationSettings
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        db.alter_column('auth_user', 'username', models.CharField(max_length=ApplicationSettings.UsernameMaxLength))
-        db.alter_column('auth_user', 'email', models.EmailField(max_length=ApplicationSettings.EmailAddressMaxLength))
+        db.alter_column('auth_user', 'username', models.CharField(max_length=ApplicationSettings.USERNAME_LENGTH))
+        db.alter_column('auth_user', 'email', models.EmailField(max_length=ApplicationSettings.EMAIL_LENGTH))
 
     def backwards(self, orm):
         db.alter_column('auth_user', 'username', models.CharField(max_length=30))
