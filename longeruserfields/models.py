@@ -6,7 +6,7 @@ from django.db.models.signals import class_prepared
 from django.conf import settings
 
 from .conf import ApplicationSettings
-
+from .utils import update_field_length
 
 MAX_USERNAME_LENGTH = ApplicationSettings.USERNAME_LENGTH
 MAX_EMAIL_LENGTH = ApplicationSettings.EMAIL_LENGTH
@@ -22,13 +22,13 @@ def patch_user_model(model):
     #
     # Username
     #
-    field_username = model._meta.get_field(fieldname)
+    field_username = model._meta.get_field('username')
     update_field_length(field_username, MAX_USERNAME_LENGTH)
 
     #
     # Email Address
     #
-    field_emailaddress = model._meta.get_field(fieldname)
+    field_emailaddress = model._meta.get_field('email')
     update_field_length(field_emailaddress, MAX_EMAIL_LENGTH)
 
 
