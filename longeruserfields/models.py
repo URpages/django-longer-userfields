@@ -29,7 +29,7 @@ def patch_user_model(model):
     # Email Address
     #
     field_emailaddress = model._meta.get_field(fieldname)
-    update_field_length(field_username, MAX_EMAIL_LENGTH)
+    update_field_length(field_emailaddress, MAX_EMAIL_LENGTH)
 
 
 # https://github.com/GoodCloud/django-longer-username/issues/1
