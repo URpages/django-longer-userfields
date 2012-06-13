@@ -1,7 +1,13 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 
-class LongerUsernameTests(TestCase):
+from .conf import ApplicationSettings
+
+MAX_USERNAME_LENGTH = ApplicationSettings.USERNAME_LENGTH
+MAX_EMAIL_LENGTH = ApplicationSettings.EMAIL_LENGTH
+
+
+class LongerUserFieldsTests(TestCase):
     """
     Unit tests for longerusername app
     """
@@ -9,8 +15,14 @@ class LongerUsernameTests(TestCase):
         """
         creates a user with a terribly long username
         """
-        long_username = ''.join([str(i) for i  in range(100)])
-        self.user = User.objects.create_user('test' + long_username, 'test@test.com', 'testpassword')
+        long_username = 'a'*MAX_USERNAME_LENGTH
+        long_emailaddress = 'a'*(MAX_EMAIL_LENGTH-6) + "@a.com"
+
+        self.user = User(username='test' + long_username,
+                         email=long_emailaddress,
+                         password='testpassword')
+        self.user.save();
+
     def testUserCreation(self):
         """
         tests that self.user was successfully saved, and can be retrieved

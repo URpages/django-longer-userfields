@@ -1,8 +1,10 @@
+# encoding: utf-8
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-from longerusername.forms import UserCreationForm, UserChangeForm
+from .forms import UserCreationForm, UserChangeForm
+from .conf import ApplicationSettings
 
 class LongerUserNameUserAdmin(UserAdmin):
     add_form = UserCreationForm
