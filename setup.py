@@ -35,6 +35,7 @@ setup(
     packages = find_packages(),
     install_requires=(
         'django-appconf==0.4.1',
+        'South==0.7.5',
     ),
     zip_safe = False,
 )
