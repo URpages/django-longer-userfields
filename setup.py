@@ -14,7 +14,7 @@ SOURCE_DIR = os.path.join(ROOT_DIR)
 
 setup(
     name = "longeruserfields",
-    version = longeruserfields.__version__,,
+    version = longeruserfields.__version__,
     classifiers = (
         'Development Status :: 4 - Beta',
         'Framework :: Django',
