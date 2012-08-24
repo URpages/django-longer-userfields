@@ -9,21 +9,18 @@ from .utils import update_field_length
 MAX_USERNAME_LENGTH = ApplicationSettings.USERNAME_LENGTH
 MAX_EMAIL_LENGTH = ApplicationSettings.EMAIL_LENGTH
 
-
-class UserCreationForm(auth_forms.UserCreationForm):
+class ExtendedFieldFormMixin(object):
     def __init__(self, *args, **kwargs):
-        super(UserCreationForm, self).__init__(*args, **kwargs)
-        update_field_length(self.fields['username'], MAX_USERNAME_LENGTH)
-        update_field_length(self.fields['email'], MAX_EMAIL_LENGTH)
+        super(ExtendedFieldForm, self).__init__(*args, **kwargs)
+        username_field = self.fields.get('username', None)
+        email_field = self.fields.get('email', None)
+        if username_field and email_field:
+            update_field_length(username_field, MAX_USERNAME_LENGTH)
+            update_field_length(email_field, MAX_EMAIL_LENGTH)
 
-class UserChangeForm(auth_forms.UserChangeForm):
-    def __init__(self, *args, **kwargs):
-        super(UserChangeForm, self).__init__(*args, **kwargs)
-        update_field_length(self.fields['username'], MAX_USERNAME_LENGTH)
-        update_field_length(self.fields['email'], MAX_EMAIL_LENGTH)
 
-class AuthenticationForm(auth_forms.AuthenticationForm):
-    def __init__(self, *args, **kwargs):
-        super(AuthenticationForm, self).__init__(*args, **kwargs)
-        update_field_length(self.fields['username'], MAX_USERNAME_LENGTH)
-        update_field_length(self.fields['email'], MAX_EMAIL_LENGTH)
+class UserCreationForm(ExtendedFieldFormMixin, auth_forms.UserCreationForm): pass
+
+class UserChangeForm(ExtendedFieldFormMixin, auth_forms.UserChangeForm): pass
+
+class AuthenticationForm(ExtendedFieldFormMixin, auth_forms.AuthenticationForm): pass
