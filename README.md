@@ -4,14 +4,18 @@ It's designed to be a simple include-and-forget project that makes a little head
 
 Usage
 =====
-Step 1. Install django-longer-userfields.
+Step 1. Install django-longer-userfields and dependancies.
 -------------------------------------
 
-- `pip install longeruserfields`
+ - `pip install git+git://github.com/URpages/django-longer-userfields.git `
 
-You will also need to install [south]() to use the migration.
+You will also need to install [south](http://south.aeracode.org/) to use the migration.
 
- - `pip install south`
+ - `pip install South==0.7.5`
+
+You will also need to install [django-appconf](https://github.com/jezdez/django-appconf) to use the neat configuration overrides.
+
+ - `pip install django-appconf==0.4.1`
 
 
 Step 2. Add `longeruserfields` to your installed apps.
