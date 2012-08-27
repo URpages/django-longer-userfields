@@ -11,7 +11,7 @@ MAX_EMAIL_LENGTH = ApplicationSettings.EMAIL_LENGTH
 
 class ExtendedFieldFormMixin(object):
     def __init__(self, *args, **kwargs):
-        super(ExtendedFieldForm, self).__init__(*args, **kwargs)
+        super(ExtendedFieldFormMixin, self).__init__(*args, **kwargs)
         username_field = self.fields.get('username', None)
         email_field = self.fields.get('email', None)
         if username_field and email_field:
