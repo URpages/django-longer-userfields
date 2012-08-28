@@ -22,7 +22,7 @@ def patch_user_model(model):
 
 def extend_user_fields(sender, *args, **kwargs):
     if (sender.__name__ == "User" and sender.__module__ == "django.contrib.auth.models"):
-        patch_model_fields(sender)
+        patch_user_model(sender)
 class_prepared.connect(extend_user_fields)
 
 
@@ -31,4 +31,4 @@ class_prepared.connect(extend_user_fields)
 # django 1.3.X loads User model before class_prepared signal is connected
 # so we patch model after it's prepared
 from django.contrib.auth.models import User
-patch_model_fields(User)
+patch_user_model(User)
